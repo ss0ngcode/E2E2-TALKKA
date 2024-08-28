@@ -43,6 +43,9 @@ public class SecurityConfig {
 	@Value("${base.url}")
 	private String baseUrl;
 
+	@Value("${base.test}")
+	private String baseTest;
+
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
@@ -50,7 +53,7 @@ public class SecurityConfig {
 			.cors(cors -> cors.configurationSource(corsConfigurationSource()))
 			.authorizeHttpRequests(authorize -> authorize
 				.requestMatchers("/api/auth/login/**").permitAll()
-				.requestMatchers("/dev-login").permitAll()    // 개발용 경로, 이후에 삭제
+				.requestMatchers(baseTest).permitAll()    // 개발용 경로, 이후에 삭제
 				.requestMatchers(HttpMethod.GET, "/api/bus/**").permitAll()
 				.requestMatchers(HttpMethod.GET, "/api/subway/**").permitAll()
 				.requestMatchers(HttpMethod.GET, "/api/bus-review/**").permitAll()
