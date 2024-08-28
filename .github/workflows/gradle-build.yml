@@ -51,11 +51,11 @@ jobs:
         working-directory: ./server
 
       - name: Docker Image Build
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/talkka-server:${{ env.IMAGE_TAG }} .
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}:${{ env.IMAGE_TAG }} .
         working-directory: ./server
 
       - name: DockerHub Push
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/talkka-server:${{ env.IMAGE_TAG }}
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}:${{ env.IMAGE_TAG }}
         working-directory: ./server
 
       - name: Application Run
