@@ -68,7 +68,7 @@ jobs:
           debug: true
 
           script: |
-            cd ./server
+            cd ./talkka/git/E2E2-TALKKA
             docker kill ${{ secrets.PROJECT_NAME }}
             docker rm -f ${{ secrets.PROJECT_NAME }}
             docker images --format '{{.Repository}}:{{.Tag}}' | grep ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }} | grep -v ${{ env.IMAGE_TAG }} | xargs -r docker rmi -f
