@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -39,6 +40,12 @@ public class SecurityConfig {
 	private static final Logger log = LoggerFactory.getLogger(SecurityConfig.class);
 	private final CustomOAuth2Service customOAuth2Service;
 
+	@Value("${common.url}")
+	private String commonUrl;
+
+	@Value("${common.test}")
+	private String commonTest;
+
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
@@ -46,7 +53,7 @@ public class SecurityConfig {
 			.cors(cors -> cors.configurationSource(corsConfigurationSource()))
 			.authorizeHttpRequests(authorize -> authorize
 				.requestMatchers("/api/auth/login/**").permitAll()
-				.requestMatchers("/dev-login").permitAll()    // 개발용 경로, 이후에 삭제
+				.requestMatchers(commonTest).permitAll()    // 개발용 경로, 이후에 삭제
 				.requestMatchers(HttpMethod.GET, "/api/bus/**").permitAll()
 				.requestMatchers(HttpMethod.GET, "/api/subway/**").permitAll()
 				.requestMatchers(HttpMethod.GET, "/api/bus-review/**").permitAll()
@@ -71,7 +78,7 @@ public class SecurityConfig {
 			)
 			.logout(logout -> logout
 				.logoutUrl("/api/auth/logout")
-				.logoutSuccessUrl("http://localhost:3000")
+				.logoutSuccessUrl(commonUrl)
 				.deleteCookies("JSESSIONID")
 			)
 			.exceptionHandling(exceptionHandling -> exceptionHandling
@@ -90,10 +97,10 @@ public class SecurityConfig {
 			public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 				Authentication authentication) throws IOException {
 				if (isUnregisteredUser(authentication)) {
-					response.sendRedirect("http://localhost:3000/register");
+					response.sendRedirect(commonUrl + "/register");
 					return;
 				}
-				response.sendRedirect("http://localhost:3000/login/ok");
+				response.sendRedirect(commonUrl + "/login/ok");
 			}
 
 			private boolean isUnregisteredUser(Authentication authentication) {
@@ -114,7 +121,7 @@ public class SecurityConfig {
 		CorsConfiguration config = new CorsConfiguration();
 
 		config.setAllowCredentials(true);
-		config.setAllowedOrigins(List.of("http://localhost:3000"));
+		config.setAllowedOrigins(List.of(commonUrl));
 		config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
 		config.setAllowedHeaders(List.of("*"));
 		config.setExposedHeaders(List.of("*"));
