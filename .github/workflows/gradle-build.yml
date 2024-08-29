@@ -85,7 +85,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           port: ${{ secrets.EC2_SSH_PORT }}
           source: "./docker-compose.yaml"
-          target: "./talkka/git/E2E2-TALKKA"
+          target: ${{ secrets.SCP_TARGET_PATH }}
 
       - name: Application Run
         uses: appleboy/ssh-action@v1.0.3
