@@ -5,7 +5,7 @@ const nextConfig = {
     appDir: true,
   },
   api: {
-    baseUrl: process.env.NEXT_PUBLIC_SERVER_URL || "https://talkka-bus.duckdns.org",
+    baseUrl: process.env.NEXT_PUBLIC_SERVER_URL,
   },
 }
 

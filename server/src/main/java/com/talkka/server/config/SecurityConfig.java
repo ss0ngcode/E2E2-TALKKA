@@ -40,7 +40,7 @@ public class SecurityConfig {
 	private static final Logger log = LoggerFactory.getLogger(SecurityConfig.class);
 	private final CustomOAuth2Service customOAuth2Service;
 
-	@Value("${base.url}")
+	@Value("${base.urll}")
 	private String baseUrl;
 
 	@Bean

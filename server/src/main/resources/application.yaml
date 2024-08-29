@@ -89,7 +89,7 @@ spring:
             user-name-attribute: response
 
 base:
-  url: http://localhost:3000
+  urll: http://localhost:3000
 ---
 spring:
   config:
@@ -132,4 +132,4 @@ spring:
             user-name-attribute: response
 
 base:
-  url: https://talkka-bus.duckdns.org
+  urll: https://talkka-bus.duckdns.org
