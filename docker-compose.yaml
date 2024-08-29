@@ -9,7 +9,7 @@ networks:
 services:
   talkka-client:
     build: ./client
-    image: shd2768/talkka-client:1.0
+    image: shd2768/talkka-client
     container_name: talkka-client
     ports:
       - "3000:3000"

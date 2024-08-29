@@ -102,7 +102,7 @@ spring:
     password: ${MYSQL_PASSWORD}
   sql:
     init:
-      mode: never
+      mode: always
   jpa:
     hibernate:
       ddl-auto: update
