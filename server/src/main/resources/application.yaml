@@ -132,4 +132,4 @@ spring:
             user-name-attribute: response
 
 base:
-  url: https://talkka-bus:3000 # 추후 프론트에 맞게 수정 필요
+  url: https://talkka-bus.duckdns.org
