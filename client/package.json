@@ -12,7 +12,7 @@
     "typecheck": "tsc --noEmit",
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
-    "generate-api": "npx openapi-typescript http://localhost:8080/api-docs -o ./api/v1.d.ts"
+    "generate-api": "npx openapi-typescript https://talkka-bus.duckdns.org/api-docs -o ./api/v1.d.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.1",
