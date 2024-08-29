@@ -28,12 +28,12 @@ services:
     networks:
       - backend
   talkka-server:
-    image: shd2768/talkka-server:1.0
+    image: shd2768/talkka-server:1.1
     container_name: talkka-server
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_URL: ${MYSQL_URL}
       SPRING_DATASOURCE_USERNAME: ${MYSQL_USERNAME}
       SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
     env_file:
