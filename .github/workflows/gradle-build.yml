@@ -77,7 +77,7 @@ jobs:
               --port ${{ secrets.EC2_SSH_PORT }} \
               --cidr ${{ steps.ip.outputs.ipv4 }}/32
 
-      - name: copy file via ssh password
+      - name: copy file via ssh key
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -85,7 +85,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           port: ${{ secrets.EC2_SSH_PORT }}
           source: "./docker-compose.yaml"
-          target: "./talkka/git/E2E2-TALKKA/docker-compose.yaml"
+          target: "./talkka/git/E2E2-TALKKA"
 
       - name: Application Run
         uses: appleboy/ssh-action@v1.0.3
