@@ -28,7 +28,7 @@ services:
     networks:
       - backend
   talkka-server:
-    image: shd2768/talkka-server:1.0
+    image: shd2768/talkka-server:1.1
     container_name: talkka-server
     ports:
       - "8080:8080"
